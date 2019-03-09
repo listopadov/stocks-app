@@ -1,0 +1,14 @@
+<div class="card card-item mb-3"
+     title="{{ gainerCompany.companyName }}"
+     [routerLink]="['company', gainerCompany.symbol]">
+  <div class="card-body">
+    <h5 class="mb-0">{{ gainerCompany.symbol }}</h5>
+    <p class="text-muted">{{ gainerCompany.companyName }}</p>
+
+    <div class="text-right">
+      <p class="text-success mb-2 price-change">+{{ gainerCompany.priceChange }}</p>
+      <p class="text-muted mb-0">Last price</p>
+      <p class="font-weight-bold">{{ gainerCompany.lastPrice }}</p>
+    </div>
+  </div>
+</div>

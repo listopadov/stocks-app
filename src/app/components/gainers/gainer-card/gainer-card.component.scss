@@ -1,0 +1,11 @@
+.price-change {
+  font-size: 1.4rem;
+}
+
+.card-item {
+  cursor: pointer;
+
+  &:hover {
+    box-shadow: 0 0 4px 2px #53b8ff7a;
+  }
+}
