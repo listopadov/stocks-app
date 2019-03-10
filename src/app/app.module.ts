@@ -12,6 +12,7 @@ import {GainersService} from './components/gainers/gainers.service';
 import {HttpClientModule} from '@angular/common/http';
 import {GainersDetailsService} from './components/gainers/gainers-details/gainers-details.service';
 import {PageNotFoundComponent} from './components/page-not-found/page-not-found.component';
+import {GainerDetailsGuard} from './guards/gainerDetails.guard';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,7 @@ import {PageNotFoundComponent} from './components/page-not-found/page-not-found.
     AppRouterModule,
     HttpClientModule,
   ],
-  providers: [GainersService, GainersDetailsService],
+  providers: [GainersService, GainersDetailsService, GainerDetailsGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule {

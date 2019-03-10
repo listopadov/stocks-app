@@ -17,6 +17,7 @@ export class GainersService {
       .pipe(
         map((data: any[]) => {
           const dataArray = data.slice();
+          // TODO maybe I can store data with Rxjs array
           const newArray: Array<GainerPromo> = [];
 
           // TODO can not find in API queryParams for get only 5 objects
