@@ -2,11 +2,13 @@ import {Injectable} from '@angular/core';
 import {ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot} from '@angular/router';
 import {Observable} from 'rxjs';
 import {GainersDetailsService} from '../components/gainers/gainers-details/gainers-details.service';
+import {GainersService} from '../components/gainers/gainers.service';
 
 @Injectable()
 export class GainerDetailsGuard implements CanActivate {
   constructor(private router: Router,
-              private gainersDetailsService: GainersDetailsService) {
+              private gainersDetailsService: GainersDetailsService,
+              private gainersService: GainersService) {
   }
 
   /**
@@ -16,17 +18,7 @@ export class GainerDetailsGuard implements CanActivate {
    * */
   canActivate(route: ActivatedRouteSnapshot,
               state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
-    this.gainersDetailsService.getGainerDescription(route.params['symbol'])
-      .subscribe(
-        () => {
-        },
-        (error) => {
-          if (error.status === 404) {
-            this.router.navigate(['/']);
-            return false;
-          }
-        },
-      );
+    console.log('---', this.gainersService.getGainerCompaniesArray());
 
     return true;
   }

@@ -7,7 +7,7 @@ import {GainerDetailsGuard} from '../guards/gainerDetails.guard';
 
 const appRoutes: Routes = [
   {path: '', component: GainersComponent},
-  {path: 'company/:symbol', canActivate: [GainerDetailsGuard], component: GainersDetailsComponent},
+  {path: 'company/:symbol', component: GainersDetailsComponent},
   {path: '**', component: PageNotFoundComponent}
 ];
 

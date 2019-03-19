@@ -8,6 +8,7 @@ import {GainerPromo} from '../../shared/models/gainer-promo';
   providedIn: 'root'
 })
 export class GainersService {
+  newArray: Array<GainerPromo>;
 
   constructor(private httpClient: HttpClient) {
   }
@@ -17,8 +18,7 @@ export class GainersService {
       .pipe(
         map((data: any[]) => {
           const dataArray = data.slice();
-          // TODO maybe I can store data with Rxjs array
-          const newArray: Array<GainerPromo> = [];
+          this.newArray = [];
 
           // TODO can not find in API queryParams for get only 5 objects
           for (let i = 0; i < 5; i++) {
@@ -26,12 +26,16 @@ export class GainersService {
               break;
             }
 
-            newArray.push(new GainerPromo(dataArray[i]['symbol'], dataArray[i]['companyName'],
+            this.newArray.push(new GainerPromo(dataArray[i]['symbol'], dataArray[i]['companyName'],
               dataArray[i]['change'], dataArray[i]['latestPrice']));
           }
 
-          return newArray;
+          return this.newArray;
         })
       );
+  }
+
+  getGainerCompaniesArray() {
+    return this.newArray.slice();
   }
 }

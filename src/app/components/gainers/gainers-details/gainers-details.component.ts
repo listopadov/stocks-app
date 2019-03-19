@@ -1,10 +1,10 @@
 import {Component, OnInit} from '@angular/core';
-import {GainerProfileDescription} from '../../../shared/models/gainer-profile-description';
 import {GainersDetailsService} from './gainers-details.service';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {finalize} from 'rxjs/operators';
 import {Observable} from 'rxjs';
-import {GainerProfileQuote} from '../../../shared/models/gainer-profile-quote';
+import {GainersService} from '../gainers.service';
+import {GainerDetails} from '../../../shared/models/gainer-details';
 
 @Component({
   selector: 'app-gainers-details',
@@ -12,50 +12,37 @@ import {GainerProfileQuote} from '../../../shared/models/gainer-profile-quote';
   styleUrls: ['./gainers-details.component.scss']
 })
 export class GainersDetailsComponent implements OnInit {
-  gainerDescription: GainerProfileDescription;
-  gainerSpecificQuote: GainerProfileQuote;
+  gainerDescription: GainerDetails;
 
   isSendingDescription = true;
-  isSendingQuote = true;
 
   logoImageCompany: Observable<any>;
 
   constructor(private gainersDetailsService: GainersDetailsService,
-              private route: ActivatedRoute) {
+              private gainersService: GainersService,
+              private route: ActivatedRoute,
+              private router: Router) {
   }
 
   ngOnInit() {
     const symbolCompany = this.route.snapshot.params['symbol'];
 
-    this.gainersDetailsService.getGainerDescription(symbolCompany)
+    this.gainersDetailsService.getGainerDetailsData(symbolCompany)
       .pipe(
-        finalize(() => {
-          this.isSendingDescription = false;
-        })
+        finalize(
+          () => {
+            this.isSendingDescription = false;
+          }
+        )
       )
       .subscribe(
         (data) => {
           this.gainerDescription = data;
         },
-        () => {
-        }
-      );
-
-    this.gainersDetailsService.getSpecificQuote(symbolCompany)
-      .pipe(
-        finalize(() => {
-          this.isSendingQuote = false;
-        })
-      )
-      .subscribe(
-        (data) => {
-          this.gainerSpecificQuote = data;
-        },
-        () => {
+        (error) => {
+          this.router.navigate(['/404']);
         },
       );
-
-    this.logoImageCompany = this.gainersDetailsService.getLogoCompany(symbolCompany);
   }
 
 }

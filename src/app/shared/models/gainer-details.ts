@@ -1,5 +1,11 @@
-export class GainerProfileQuote {
-  constructor(public latestVolume: number,
+export class GainerDetails {
+  constructor(public symbol: string,
+              public companyName: string,
+              public description: string,
+              public sector: string,
+              public industry: string,
+              public website: string,
+              public latestVolume: number,
               public week52High: number,
               public week52Low: number,
               public open: number,
@@ -10,6 +16,7 @@ export class GainerProfileQuote {
               public latestUpdate: number,
               public latestPrice: number,
               public priceChange: number,
-              public changePercent: number) {
+              public changePercent: number,
+              public urlImage: string) {
   }
 }

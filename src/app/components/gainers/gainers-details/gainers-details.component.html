@@ -1,12 +1,12 @@
-<ng-container *ngIf="isSendingDescription && isSendingQuote">
+<ng-container *ngIf="isSendingDescription">
   <ng-container *ngTemplateOutlet="loader"></ng-container>
 </ng-container>
 
-<ng-container *ngIf="!isSendingDescription && !isSendingQuote">
+<ng-container *ngIf="!isSendingDescription">
   <div class="gainer-item-wrapper">
     <h2 class="mb-3"> {{ gainerDescription.companyName }} ({{ gainerDescription.symbol }})</h2>
-    <h2>{{ gainerSpecificQuote.latestPrice }}
-      <span class="text-success">+{{ gainerSpecificQuote.priceChange }}(+{{ gainerSpecificQuote.changePercent }})</span>
+    <h2>{{ gainerDescription.latestPrice }}
+      <span class="text-success">+{{ gainerDescription.priceChange }}(+{{ gainerDescription.changePercent }})</span>
     </h2>
 
     <div class="card mt-5">
@@ -19,9 +19,7 @@
 
             <div class="row">
               <div class="col-12 col-md-6 mb-3">
-                <ng-container *ngIf="(logoImageCompany | async); else loader">
-                  <img src="{{ logoImageCompany | async }}" alt="logo Company">
-                </ng-container>
+                <img src="{{ gainerDescription.urlImage }}" alt="logo Company">
               </div>
 
               <div class="col-12 col-md-6">
@@ -51,19 +49,19 @@
                       <li class="mb-2">
                         <span class="text-muted">Volume</span>
                         <!-- TODO need formatted number into 23,480,687 -->
-                        <span class="d-block font-weight-bold">{{ gainerSpecificQuote.latestVolume }}</span>
+                        <span class="d-block font-weight-bold">{{ gainerDescription.latestVolume }}</span>
                       </li>
                       <li class="mb-2">
                         <span class="text-muted">52 Week Range</span>
-                        <span class="d-block font-weight-bold">{{ gainerSpecificQuote.week52Low }} - {{ gainerSpecificQuote.week52High }}</span>
+                        <span class="d-block font-weight-bold">{{ gainerDescription.week52Low }} - {{ gainerDescription.week52High }}</span>
                       </li>
                       <li class="mb-2">
                         <span class="text-muted">Open</span>
-                        <span class="d-block font-weight-bold">{{ gainerSpecificQuote.open }}</span>
+                        <span class="d-block font-weight-bold">{{ gainerDescription.open }}</span>
                       </li>
                       <li>
                         <span class="text-muted">Previous Close</span>
-                        <span class="d-block font-weight-bold">{{ gainerSpecificQuote.previousClose }}</span>
+                        <span class="d-block font-weight-bold">{{ gainerDescription.previousClose }}</span>
                       </li>
                     </ul>
                   </div>
@@ -73,21 +71,21 @@
                       <li class="mb-2">
                         <span class="text-muted">Avg Daily Volume</span>
                         <!-- TODO need formatted number into 23,480,687 -->
-                        <span class="d-block font-weight-bold">{{ gainerSpecificQuote.avgTotalVolume }}</span>
+                        <span class="d-block font-weight-bold">{{ gainerDescription.avgTotalVolume }}</span>
                       </li>
                       <li class="mb-2">
                         <span class="text-muted">Market Cap</span>
                         <!-- TODO need formatted number into 817.585B (million or billion) -->
-                        <span class="d-block font-weight-bold">{{ gainerSpecificQuote.marketCap }}</span>
+                        <span class="d-block font-weight-bold">{{ gainerDescription.marketCap }}</span>
                       </li>
                       <li class="mb-2">
                         <span class="text-muted">Source</span>
-                        <span class="d-block font-weight-bold">{{ gainerSpecificQuote.latestSource }}</span>
+                        <span class="d-block font-weight-bold">{{ gainerDescription.latestSource }}</span>
                       </li>
                       <li>
                         <span class="text-muted">last Update</span>
                         <!-- TODO need pipe for mapping formatted time. Use moment.js -->
-                        <span class="d-block font-weight-bold">{{ gainerSpecificQuote.latestUpdate }}</span>
+                        <span class="d-block font-weight-bold">{{ gainerDescription.latestUpdate }}</span>
                       </li>
                     </ul>
                   </div>
