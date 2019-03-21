@@ -17,6 +17,9 @@ export class GainersDetailsService {
     return this.httpClient.get(`https://api.iextrading.com/1.0/stock/${symbol}/company`)
       .pipe(
         map(
+          // todo rev: RV-C1 16.03.2019 09:17
+          // todo Andrey: is Response a correct json data interface?
+          // todo there is no import statement for it
           (data: Response) => {
             // TODO need check data
             return new GainerProfileDescription(
@@ -32,10 +35,16 @@ export class GainersDetailsService {
       );
   }
 
+  // todo rev: RV-C1 16.03.2019 09:22
+  // todo Andrey: It's better to avoid using any data interface at all
+  // todo Observable<any> -> Observable<string>
   getLogoCompany(symbol: string): Observable<any> {
     return this.httpClient.get(`https://api.iextrading.com/1.0/stock/${symbol}/logo`)
       .pipe(
         map(
+          // todo rev: RV-C1 16.03.2019 09:17
+          // todo Andrey: is Response a correct json data interface?
+          // todo there is no import statement for it
           (response: Response) => {
             return response.url;
           }
@@ -47,6 +56,9 @@ export class GainersDetailsService {
     return this.httpClient.get(`https://api.iextrading.com/1.0/stock/${symbol}/quote`)
       .pipe(
         map(
+          // todo rev: RV-C1 16.03.2019 09:17
+          // todo Andrey: is Response a correct json data interface?
+          // todo there is no import statement for it
           (response: Response) => {
             return new GainerProfileQuote(
               response['latestVolume'],

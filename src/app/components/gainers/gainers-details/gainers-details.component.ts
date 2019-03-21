@@ -37,6 +37,8 @@ export class GainersDetailsComponent implements OnInit {
         (data) => {
           this.gainerDescription = data;
         },
+        // todo rev: RV-C1 16.03.2019 09:19
+        // todo Andrey: error handler should be added here
         () => {
         }
       );
@@ -51,6 +53,8 @@ export class GainersDetailsComponent implements OnInit {
         (data) => {
           this.gainerSpecificQuote = data;
         },
+        // todo rev: RV-C1 16.03.2019 09:19
+        // todo Andrey: error handler should be added here
         () => {
         },
       );
