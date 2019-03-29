@@ -48,8 +48,7 @@
                     <ul class="list-inline">
                       <li class="mb-2">
                         <span class="text-muted">Volume</span>
-                        <!-- TODO need formatted number into 23,480,687 -->
-                        <span class="d-block font-weight-bold">{{ gainerDescription.latestVolume }}</span>
+                        <span class="d-block font-weight-bold">{{ gainerDescription.latestVolume | thousandsSeparator }}</span>
                       </li>
                       <li class="mb-2">
                         <span class="text-muted">52 Week Range</span>
@@ -70,13 +69,11 @@
                     <ul class="list-inline">
                       <li class="mb-2">
                         <span class="text-muted">Avg Daily Volume</span>
-                        <!-- TODO need formatted number into 23,480,687 -->
-                        <span class="d-block font-weight-bold">{{ gainerDescription.avgTotalVolume }}</span>
+                        <span class="d-block font-weight-bold">{{ gainerDescription.avgTotalVolume | thousandsSeparator}}</span>
                       </li>
                       <li class="mb-2">
                         <span class="text-muted">Market Cap</span>
-                        <!-- TODO need formatted number into 817.585B (million or billion) -->
-                        <span class="d-block font-weight-bold">{{ gainerDescription.marketCap }}</span>
+                        <span class="d-block font-weight-bold">{{ gainerDescription.marketCap | prettifyNumber }}</span>
                       </li>
                       <li class="mb-2">
                         <span class="text-muted">Source</span>
@@ -84,8 +81,7 @@
                       </li>
                       <li>
                         <span class="text-muted">last Update</span>
-                        <!-- TODO need pipe for mapping formatted time. Use moment.js -->
-                        <span class="d-block font-weight-bold">{{ gainerDescription.latestUpdate }}</span>
+                        <span class="d-block font-weight-bold">{{ gainerDescription.latestUpdate | date }}</span>
                       </li>
                     </ul>
                   </div>

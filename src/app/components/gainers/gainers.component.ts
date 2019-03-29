@@ -11,14 +11,15 @@ import {finalize} from 'rxjs/operators';
 export class GainersComponent implements OnInit {
   gainerCompanies: Array<GainerPromo>;
   isSending = true;
+  myName: string;
 
-  // todo rev: RV-C1 16.03.2019 09:15
-  // todo Andrey: let's fix grammar mistake :) gainerServeice -> gainerService
-  constructor(private gainerServeice: GainersService) {
+  constructor(private gainersService: GainersService) {
   }
 
   ngOnInit() {
-    this.gainerServeice.getGainerCompaniesData()
+    this.myName = 'Roman';
+
+    this.gainersService.getGainerCompaniesData()
       .pipe(
         finalize(() => {
           this.isSending = false;
@@ -28,10 +29,9 @@ export class GainersComponent implements OnInit {
         (data) => {
           this.gainerCompanies = data;
         },
-        // todo rev: RV-C1 16.03.2019 09:15
-        // todo Andrey: it's better not to ignore errors
-        // todo and do at least something (console.log / alert)
-        (error) => {}
+        (error) => {
+          console.log('--- Something go wrong: ', error);
+        }
       );
   }
 

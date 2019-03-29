@@ -327,3 +327,10 @@ Optional [suggested libraries](https://hiring-event-f89fd.firebaseapp.com) for t
 
 * [Search input](https://hiring-event-f89fd.firebaseapp.com/autocomplete)
 * [Company card](https://hiring-event-f89fd.firebaseapp.com/card)
+
+### Building on prod
+```
+ng build --prod --base-href https://listopadov.github.io/stocks-app/
+
+ngh --no-silent
+```

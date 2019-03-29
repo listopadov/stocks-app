@@ -14,8 +14,15 @@ import {GainersDetailsService} from './components/gainers/gainers-details/gainer
 import {PageNotFoundComponent} from './components/page-not-found/page-not-found.component';
 import {GainerDetailsGuard} from './guards/gainerDetails.guard';
 import {GainerInterceptor} from './shared/interceptors/gainer.interceptor';
-
+import {ShortenPipe} from './shared/pipes/shorten.pipe';
+import { ThousandsSeparatorPipe } from './shared/pipes/thousands-separator.pipe';
+import { PrettifyNumberPipe } from './shared/pipes/prettify-number.pipe';
 @NgModule({
+  imports: [
+    BrowserModule,
+    AppRouterModule,
+    HttpClientModule,
+  ],
   declarations: [
     AppComponent,
     HeaderComponent,
@@ -24,11 +31,9 @@ import {GainerInterceptor} from './shared/interceptors/gainer.interceptor';
     GainersDetailsComponent,
     GainerCardComponent,
     PageNotFoundComponent,
-  ],
-  imports: [
-    BrowserModule,
-    AppRouterModule,
-    HttpClientModule,
+    ShortenPipe,
+    ThousandsSeparatorPipe,
+    PrettifyNumberPipe
   ],
   providers: [
     GainersService,
@@ -39,7 +44,7 @@ import {GainerInterceptor} from './shared/interceptors/gainer.interceptor';
       useClass: GainerInterceptor,
       multi: true
     }
-    ],
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {
